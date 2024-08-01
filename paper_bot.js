@@ -139,7 +139,7 @@ function getFetch(id) {//pubmedID -> abstruct
 
 function getGeminiSummary(abst) {//Geminiによる翻訳&要約
     const gemini_key = ''; // GeminiのAPIキー
-    const baseUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${gemini_key}`;
+    const baseUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${gemini_key}`;
 
     const payload = {
         'contents': [
