@@ -16,7 +16,8 @@ PubMedで文献検索&アブストラクトをGemini 1.5 Flashを使って翻訳
 1. PubMed APIの設定
 2. Geminiの設定
 3. LINE Notifyの設定
-4. Google Apps Script (GAS)の定期実行
+4. 検索キーワードリストの作成
+5. Google Apps Script (GAS)の定期実行
 
 ## 1. PubMed APIの設定 (APIキーの取得)
 > [!NOTE]
@@ -24,16 +25,34 @@ PubMedで文献検索&アブストラクトをGemini 1.5 Flashを使って翻訳
 
 - [NCBI](https://www.ncbi.nlm.nih.gov/)にログイン
 - Account Settings>API Key ManagementのCreate API Keyというボタンを押し、API Keyを生成する
-- 生成したAPI keyをGASコード上のpubmed_keyの部分にコピペ (3箇所)
+- 生成したAPI keyをGASコード上のpubmed_keyにコピペ (3箇所)
 
 ## 2. Geminiの設定
 - [Google AI Studio](https://ai.google.dev/aistudio?hl=ja)にログイン
 - 左上のGet API keyを押して、API keyを作成する
 - 表示されるホップアップは適宜承認
-- 生成したAPI keyをGASコード上のgemini_keyの部分にコピペ (1箇所)
+- 生成したAPI keyをGASコード上のgemini_keyにコピペ (1箇所)
 
 ## 3. LINE Notifyの設定
 
-https://qiita.com/frozencatpisces/items/679d66ab1d617b7a40cb
+参考:  
+https://qiita.com/frozencatpisces/items/679d66ab1d617b7a40cb  
+https://zenn.dev/miya_akari/articles/e4541d7ac84921
 
+- LINEで通知を受け取るトークルームを作成
+- [LINE Notify](https://notify-bot.line.me/ja/)にログインし、マイページからアクセストークンを発行 (送信するトークルームごとに作成される)
+- トークルームにLINE Notifyを招待
+- 発行したトークンをGASコード上のline_tokenにコピペ (1箇所)
+  
+## 4. 検索キーワードリストの作成
+- 自分のGoogle Accountからマイドライブにアクセス
+- 画面を右クリックし、Google スプレッドシートから新規のスプレッドシートを作成する
+![Fig 3](/image/fig3.png)
+
+## 5. GASの定期実行
+
+- 自分のGoogle Accountからマイドライブにアクセス
+- 画面を右クリックし、Google Apps Scriptから新規のGASプロジェクトを作成する
+![Fig 2](/image/fig2.png)
+- GASコード([paper_bot.js](/paper_bot.js))をコピペ
 - 
