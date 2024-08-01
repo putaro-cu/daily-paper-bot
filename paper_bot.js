@@ -126,18 +126,17 @@ function getFetch(id) {//pubmedID -> abstruct
     var root = xml.getRootElement();
 
     try {
-        var abstractElement = root.getChild('PubmedArticle')
+        const abstractElement = root.getChild('PubmedArticle')
             .getChild('MedlineCitation')
             .getChild('Article')
-            .getChild('Abstract')
+            .getChild('Abstract');
+
+        const abstractText = abstractElement.getValue();
+        return abstractText;
+
     } catch (e) {
-        return "no abstruct available"
+        return "no abstruct available";
     }
-
-    // Abstractの内容を取得
-    var abstractText = abstractElement.getValue();
-
-    return abstractText;
 }
 
 function getGeminiSummary(abst) {
@@ -149,7 +148,7 @@ function getGeminiSummary(abst) {
         'contents': [
             {
                 'parts': [{
-                    'text': `Please summarize this abstract of the research article in Japanese. The maximum of characters is 950. No need to itemize.\n ${abst}`
+                    'text': `Please summarize this abstract of the research article in Japanese. The maximum of characters is 950. The maximum of characters is 950. No need to itemize. Exclude the part of copyright. \n ${abst}`
                 }]
             }
         ],
