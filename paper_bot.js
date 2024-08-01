@@ -1,7 +1,7 @@
 function main() {
     const line_token = ''; // LINE Notifyのトークン
     const lineNotifyApi = 'https://notify-api.line.me/api/notify';
-    const sheet = SpreadsheetApp.openByUrl("").getSheets()[0]; // スプレッドシートのURLを入力
+    const sheet = SpreadsheetApp.openByUrl("").getSheets()[0]; // スプレッドシートのURL
 
 
     // 検索ワードを決定する
@@ -33,9 +33,9 @@ function main() {
 }
 
 function getPubmedID(term) {// pubmedでの検索実行
-    const pubmed_key = ''; // pubmedのAPIキー
+    const pubmed_key = ''; // PubMedのAPIキー
     const retMax = 20;
-    const range = 5; // 5年以内の論文を検索
+    const range = 5;
     const baseUrl = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi';
 
     const today = new Date();
@@ -49,13 +49,13 @@ function getPubmedID(term) {// pubmedでの検索実行
         datetype: 'pdat',
         mindate: [today.getFullYear() - range, today.getMonth(), today.getDay()].join("/"),
         maxdate: [today.getFullYear(), today.getMonth(), today.getDay()].join("/"),
-        apikey: pubmed_key
+        apikey: pubmed_key,
+        sort: 'relevance'
     };
 
     const response = UrlFetchApp.fetch(baseUrl + '?' + encodeParams(params));
     const data = JSON.parse(response.getContentText());
     const array = data.esearchresult.idlist;
-    Logger.log(array);
 
     if (array.length > 3) {
         const shuffledArray = durstenfeldShuffle([...array]);
@@ -66,10 +66,9 @@ function getPubmedID(term) {// pubmedでの検索実行
 
 }
 
-function getSummary(id) {//pubmedID -> summary
-    const pubmed_key = ''; // pubmedのAPIキー
+function getSummary(id) {
     const baseUrl = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi';
-
+    const pubmed_key = ''; // PubMedのAPIキー
     const params = {
         db: 'pubmed',
         id: id,
@@ -110,9 +109,8 @@ function getSummary(id) {//pubmedID -> summary
 }
 
 function getFetch(id) {//pubmedID -> abstruct
-
-    const pubmed_key = ''; // pubmedのAPIキー
     const baseUrl = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi';
+    const pubmed_key = ''; // pubmedのAPIキー
 
     const params = {
         db: 'pubmed',
@@ -122,31 +120,54 @@ function getFetch(id) {//pubmedID -> abstruct
     };
 
     const response = UrlFetchApp.fetch(baseUrl + '?' + encodeParams(params));
-
+    // XML文字列をXMLServiceで解析する
     var xml = XmlService.parse(response.getContentText());
     var root = xml.getRootElement();
 
+    try {
+        var abstractElement = root.getChild('PubmedArticle')
+            .getChild('MedlineCitation')
+            .getChild('Article')
+            .getChild('Abstract')
+    } catch (e) {
+        return "no abstruct available"
+    }
 
-    var abstractElement = root.getChild('PubmedArticle')
-        .getChild('MedlineCitation')
-        .getChild('Article')
-        .getChild('Abstract')
-        .getChild('AbstractText');
-
+    // Abstractの内容を取得
     var abstractText = abstractElement.getValue();
+
     return abstractText;
 }
 
-function getGeminiSummary(abst) {//Geminiによる翻訳&要約
+function getGeminiSummary(abst) {
     const gemini_key = ''; // GeminiのAPIキー
     const baseUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${gemini_key}`;
 
+    Logger.log(abst);
     const payload = {
         'contents': [
             {
                 'parts': [{
-                    'text': `Please summarize this abstract of the research article in Japanese. The maximum of characters is 950. No need to itemize. \n${abst}`
+                    'text': `Please summarize this abstract of the research article in Japanese. The maximum of characters is 950. No need to itemize.\n ${abst}`
                 }]
+            }
+        ],
+        "safetySettings": [
+            {
+                "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                "threshold": "BLOCK_NONE"
+            },
+            {
+                "category": "HARM_CATEGORY_HATE_SPEECH",
+                "threshold": "BLOCK_NONE"
+            },
+            {
+                "category": "HARM_CATEGORY_HARASSMENT",
+                "threshold": "BLOCK_NONE"
+            },
+            {
+                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                "threshold": "BLOCK_NONE"
             }
         ]
     };
@@ -159,7 +180,7 @@ function getGeminiSummary(abst) {//Geminiによる翻訳&要約
 
     const response = UrlFetchApp.fetch(baseUrl, options);
     const json = JSON.parse(response.getContentText())
-    Logger.log(json);
+
     if ('content' in json.candidates[0]) {
         return json.candidates[0].content.parts[0].text;
     } else {
@@ -176,7 +197,7 @@ function encodeParams(params) {
 function durstenfeldShuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+        [array[i], array[j]] = [array[j], array[i]]; // 要素の交換
     }
     return array;
 }
