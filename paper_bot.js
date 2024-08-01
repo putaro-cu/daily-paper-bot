@@ -133,7 +133,7 @@ function getFetch(id) {//pubmedID -> abstruct
         .getChild('Abstract')
         .getChild('AbstractText');
 
-    var abstractText = abstractElement.getText();
+    var abstractText = abstractElement.getValue();
     return abstractText;
 }
 
@@ -145,7 +145,7 @@ function getGeminiSummary(abst) {//Geminiによる翻訳&要約
         'contents': [
             {
                 'parts': [{
-                    'text': `Please summarize this abstract of the research article in Japanese. The maximum of characters is 950. ${abst}`
+                    'text': `Please summarize this abstract of the research article in Japanese. The maximum of characters is 950. No need to itemize. \n${abst}`
                 }]
             }
         ]
