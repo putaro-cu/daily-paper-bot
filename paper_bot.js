@@ -1,7 +1,8 @@
 function main() {
     const line_token = '自分のものに置き換えてください'; // LINE Notifyのトークン
+    const sheetUrl = '自分のものに置き換えてください'; // スプレッドシートのURL
     const lineNotifyApi = 'https://notify-api.line.me/api/notify';
-    const sheet = SpreadsheetApp.openByUrl("自分のものに置き換えてください").getSheets()[0]; // スプレッドシートのURL
+    const sheet = SpreadsheetApp.openByUrl(sheetUrl).getSheets()[0];
 
 
     // 検索ワードを決定する

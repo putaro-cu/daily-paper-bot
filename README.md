@@ -50,6 +50,7 @@ https://zenn.dev/miya_akari/articles/e4541d7ac84921
 ![Fig 3](/image/fig3.png)
 - 作成したスプレッドシートのA列に検索したいキーワードリストを入力
 ![Fig 4](/image/fig4.png)
+- 作成したスプレッドシートのURLをGASコード上のsheetにコピペ
 
 ## 5. GASの定期実行
 
