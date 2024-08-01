@@ -46,8 +46,10 @@ https://zenn.dev/miya_akari/articles/e4541d7ac84921
   
 ## 4. 検索キーワードリストの作成
 - 自分のGoogle Accountからマイドライブにアクセス
-- 画面を右クリックし、Google スプレッドシートから新規のスプレッドシートを作成する
+- 画面を右クリックし、Google スプレッドシートから新規のスプレッドシートを作成する  
 ![Fig 3](/image/fig3.png)
+- 作成したスプレッドシートのA列に検索したいキーワードリストを入力
+![Fig 4](/image/fig4.png)
 
 ## 5. GASの定期実行
 

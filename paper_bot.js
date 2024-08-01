@@ -1,7 +1,7 @@
 function main() {
-    const line_token = ''; // LINE Notifyのトークン
+    const line_token = '自分のものに置き換えてください'; // LINE Notifyのトークン
     const lineNotifyApi = 'https://notify-api.line.me/api/notify';
-    const sheet = SpreadsheetApp.openByUrl("").getSheets()[0]; // スプレッドシートのURL
+    const sheet = SpreadsheetApp.openByUrl("自分のものに置き換えてください").getSheets()[0]; // スプレッドシートのURL
 
 
     // 検索ワードを決定する
@@ -33,7 +33,7 @@ function main() {
 }
 
 function getPubmedID(term) {// pubmedでの検索実行
-    const pubmed_key = ''; // PubMedのAPIキー
+    const pubmed_key = '自分のものに置き換えてください'; // PubMedのAPIキー
     const retMax = 20;
     const range = 5;
     const baseUrl = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi';
@@ -68,7 +68,7 @@ function getPubmedID(term) {// pubmedでの検索実行
 
 function getSummary(id) {
     const baseUrl = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi';
-    const pubmed_key = ''; // PubMedのAPIキー
+    const pubmed_key = '自分のものに置き換えてください'; // PubMedのAPIキー
     const params = {
         db: 'pubmed',
         id: id,
@@ -110,7 +110,7 @@ function getSummary(id) {
 
 function getFetch(id) {//pubmedID -> abstruct
     const baseUrl = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi';
-    const pubmed_key = ''; // pubmedのAPIキー
+    const pubmed_key = '自分のものに置き換えてください'; // pubmedのAPIキー
 
     const params = {
         db: 'pubmed',
@@ -140,7 +140,7 @@ function getFetch(id) {//pubmedID -> abstruct
 }
 
 function getGeminiSummary(abst) {
-    const gemini_key = ''; // GeminiのAPIキー
+    const gemini_key = '自分のものに置き換えてください'; // GeminiのAPIキー
     const baseUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${gemini_key}`;
 
     Logger.log(abst);
