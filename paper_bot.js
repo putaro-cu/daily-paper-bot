@@ -9,7 +9,7 @@ function main() {
     const term = values[Math.floor(values.length * Math.random())];
 
     // PubMed IDを取得
-    const idList = getPubmedData(term);
+    const idList = getPubmedID(term);
 
     if (idList < 1) {
         Logger.log("No results");
@@ -32,7 +32,7 @@ function main() {
     });
 }
 
-function getPubmedData(term) {// pubmedでの検索実行
+function getPubmedID(term) {// pubmedでの検索実行
     const pubmed_key = ''; // pubmedのAPIキー
     const retMax = 20;
     const range = 5; // 5年以内の論文を検索
