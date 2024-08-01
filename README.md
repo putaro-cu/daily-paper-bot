@@ -1,5 +1,5 @@
 # daily-paper-bot
-PubMedで文献検索&アブストラクトをGemini 1.5 Flashを使って翻訳したものを、LINEへ通知してくれる。
+PubMedで文献検索&アブストラクトをGemini 1.5 Flashを使って翻訳したものを、LINEへ通知する。
 
 # 概説
 - Google Spreadsheetに記入したキーワードをランダムで一つ選び、PubMedで検索する (by Entrez API)。
