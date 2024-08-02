@@ -67,7 +67,7 @@ https://zenn.dev/miya_akari/articles/e4541d7ac84921
 - API keyなどを自分のものにしたGASコード ([paper_bot.js](/paper_bot.js))をコピペ
 - 実行を押して、LINEに通知が来たら動作確認完了
 
- ![Fig 7](/image/fig7.png)
+ <img src="/image/fig7.png" width="300">
 
 - 定期実行したい場合は、画面左端のトリガーからトリガーを追加で日時を指定する  
 
