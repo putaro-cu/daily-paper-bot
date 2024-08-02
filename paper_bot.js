@@ -78,8 +78,6 @@ function getSummary(id) {
     };
 
     const response = UrlFetchApp.fetch(baseUrl + '?' + encodeParams(params));
-
-    // JSONをパースする
     const json = JSON.parse(response.getContentText()).result;
 
     const title = (json[id].title)
@@ -121,9 +119,9 @@ function getFetch(id) {//pubmedID -> abstruct
     };
 
     const response = UrlFetchApp.fetch(baseUrl + '?' + encodeParams(params));
-    // XML文字列をXMLServiceで解析する
-    var xml = XmlService.parse(response.getContentText());
-    var root = xml.getRootElement();
+    
+    const xml = XmlService.parse(response.getContentText());
+    const root = xml.getRootElement();
 
     try {
         const abstractElement = root.getChild('PubmedArticle')
@@ -142,8 +140,7 @@ function getFetch(id) {//pubmedID -> abstruct
 function getGeminiSummary(abst) {
     const gemini_key = '自分のものに置き換えてください'; // GeminiのAPIキー
     const baseUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${gemini_key}`;
-
-    Logger.log(abst);
+    
     const payload = {
         'contents': [
             {
