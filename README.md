@@ -6,6 +6,7 @@ PubMedで文献検索&アブストラクトをGemini 1.5 Flashを使って翻訳
 - 関連順で上位20件から3件をランダムに選び、そのタイトルやアブストラクトの情報を取得する (by Entrez API)。
 - 抽出したアブストラクトの文章をGemini 1.5 Flash (Googleの生成AI)で翻訳する (by Gemini API)
 - 得られた情報をLINEに送信 (by LINE Notify)。
+
 ![Fig 1](/image/fig1.png)
 
 # 使い方
@@ -46,19 +47,28 @@ https://zenn.dev/miya_akari/articles/e4541d7ac84921
   
 ## 4. 検索キーワードリストの作成
 - 自分のGoogle Accountからマイドライブにアクセス
-- 画面を右クリックし、Google スプレッドシートから新規のスプレッドシートを作成する  
+- 画面を右クリックし、Google スプレッドシートから新規のスプレッドシートを作成する
+
 ![Fig 3](/image/fig3.png)
+
 - 作成したスプレッドシートのA列に検索したいキーワードリストを入力
+
 ![Fig 4](/image/fig4.png)
+
 - 作成したスプレッドシートのURLをGASコード上のsheetUrlにコピペ
 
 ## 5. GASの定期実行
 
 - 自分のGoogle Accountからマイドライブにアクセス
 - 画面を右クリックし、Google Apps Scriptから新規のGASプロジェクトを作成する
+
 ![Fig 2](/image/fig2.png)
+
 - API keyなどを自分のものにしたGASコード ([paper_bot.js](/paper_bot.js))をコピペ
 - 実行を押して、LINEに通知が来たら動作確認完了
+
  ![Fig 7](/image/fig7.png)
+
 - 定期実行したい場合は、画面左端のトリガーからトリガーを追加で日時を指定する  
+
 ![Fig 5](/image/fig5.png)![Fig 6](/image/fig6.png)
