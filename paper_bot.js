@@ -35,8 +35,8 @@ function main() {
 
 function getPubmedID(term) {// pubmedでの検索実行
     const pubmed_key = '自分のものに置き換えてください'; // PubMedのAPIキー
-    const retMax = 20;
-    const range = 5;
+    const retMax = 20; // 検索する件数
+    const range = 5; // 検索する範囲 (年)
     const baseUrl = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi';
 
     const today = new Date();
@@ -144,12 +144,12 @@ function getGeminiSummary(abst) {
     const payload = {
         'contents': [
             {
-                'parts': [{
+                'parts': [{ // Geminiに送信するプロンプト 1回で送信できる文字数上限 (1000文字)に合わせて要約
                     'text': `Please summarize this abstract of the research article in Japanese. The maximum of characters is 950. The maximum of characters is 950. No need to itemize. Exclude the part of copyright. \n ${abst}`
                 }]
             }
         ],
-        "safetySettings": [
+        "safetySettings": [ // Geminiのブロック判定を解除
             {
                 "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
                 "threshold": "BLOCK_NONE"
