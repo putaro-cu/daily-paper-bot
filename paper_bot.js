@@ -16,7 +16,7 @@ function main() {
         Logger.log("No results");
     }
 
-    // 各PubMed IDに対してメッセージをLINEに送信
+    // 各PubMed IDに分けてメッセージをLINEに送信
     idList.map(id => {
         const message = [getSummary(id), getGeminiSummary(getFetch(id))];
 
@@ -37,6 +37,7 @@ function getPubmedID(term) {// pubmedでの検索実行
     const pubmed_key = '自分のものに置き換えてください'; // PubMedのAPIキー
     const retMax = 20; // 検索する件数
     const range = 5; // 検索する範囲 (年)
+    const notify = 3; //LINEに通知する件数
     const baseUrl = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi';
 
     const today = new Date();
@@ -58,9 +59,9 @@ function getPubmedID(term) {// pubmedでの検索実行
     const data = JSON.parse(response.getContentText());
     const array = data.esearchresult.idlist;
 
-    if (array.length > 3) {
+    if (array.length > notify) {
         const shuffledArray = durstenfeldShuffle([...array]);
-        return shuffledArray.slice(0, 3);
+        return shuffledArray.slice(0, notify);
     } else {
         return array;
     }
