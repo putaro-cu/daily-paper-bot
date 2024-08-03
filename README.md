@@ -72,3 +72,9 @@ https://zenn.dev/miya_akari/articles/e4541d7ac84921
 - 定期実行したい場合は、画面左端のトリガーからトリガーを追加で日時を指定する  
 
 ![Fig 5](/image/fig5.png)![Fig 6](/image/fig6.png)
+
+# カスタマイズ
+
+getPubmedID関数内のパラメータを変更することで、検索条件を変更できる  
+
+getGeminiSummary関数内の"payload" > "contents" > "parts" > "text" を変更することによって、Geminiに渡すプロンプトを変更できる  
