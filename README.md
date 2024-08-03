@@ -46,10 +46,10 @@ Google Apps Scriptを使って、PubMedで文献検索&アブストラクトをG
 - [LINE Notify](https://notify-bot.line.me/ja/)にログインし、マイページからアクセストークンを発行 (送信するトークルームごとに作成される)
 - トークルームにLINE Notifyを招待
 - 発行したトークンをGASコード上のline_tokenにコピペ (1箇所)  
-参考:  
-https://qiita.com/frozencatpisces/items/679d66ab1d617b7a40cb  
-https://zenn.dev/miya_akari/articles/e4541d7ac84921
-
+### 参考:  
+1. https://qiita.com/frozencatpisces/items/679d66ab1d617b7a40cb  
+2. https://zenn.dev/miya_akari/articles/e4541d7ac84921
+  
 ## 4. 検索キーワードリストの作成
 - 自分のGoogle Accountからマイドライブにアクセス
 - 画面を右クリックし、Google スプレッドシートから新規のスプレッドシートを作成する
