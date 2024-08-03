@@ -1,5 +1,5 @@
 # daily-paper-bot
-[Google Apps Script](https://utelecon.adm.u-tokyo.ac.jp/articles/gas/)を使って、PubMedで論文検索を行い、そのアブストラクトをGemini 1.5 Flash (生成AI)を使って翻訳したものを、LINEへ通知する。有償のサービスは利用しない。
+[Google Apps Script](https://utelecon.adm.u-tokyo.ac.jp/articles/gas/)を使って、PubMedで論文検索を行い、そのアブストラクトを[Gemini 1.5 Flash](https://ai.google.dev/gemini-api?gad_source=1&gclid=Cj0KCQjwh7K1BhCZARIsAKOrVqFkaNuIa5R69qHek8B2JtS2F5KdqRY0oq9QpEdEInWv7U1S5OQ14twaAsEiEALw_wcB&hl=ja)を使って翻訳したものを、LINEへ通知する。有償のサービスは利用しない。
 
 # 概説
 - Google Spreadsheetに記入したキーワードからランダムで一つ選び、PubMedで過去5年分の論文を検索する (by Entrez API)。
