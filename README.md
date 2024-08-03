@@ -1,5 +1,5 @@
 # daily-paper-bot
-PubMedで文献検索&アブストラクトをGemini 1.5 Flashを使って翻訳したものを、LINEへ通知する。有償のサービスは利用しない。
+Google Apps Scriptを使って、PubMedで文献検索&アブストラクトをGemini 1.5 Flashを使って翻訳したものを、LINEへ通知する。有償のサービスは利用しない。
 
 # 概説
 - Google Spreadsheetに記入したキーワードからランダムで一つ選び、PubMedで過去5年分の論文を検索する (by Entrez API)。
@@ -8,6 +8,12 @@ PubMedで文献検索&アブストラクトをGemini 1.5 Flashを使って翻訳
 - 得られた情報をLINEに送信 (by LINE Notify)。
 
 ![Fig 1](/image/fig1.png)
+
+# 必要条件
+- Googleアカウント
+- Google AI Studioアカウント
+- NCBIアカウント
+- LINE Notifyアカウント
 
 # 使い方
 > [!CAUTION]
@@ -36,15 +42,14 @@ PubMedで文献検索&アブストラクトをGemini 1.5 Flashを使って翻訳
 
 ## 3. LINE Notifyの設定
 
-参考:  
-https://qiita.com/frozencatpisces/items/679d66ab1d617b7a40cb  
-https://zenn.dev/miya_akari/articles/e4541d7ac84921
-
 - LINEで通知を受け取るトークルームを作成
 - [LINE Notify](https://notify-bot.line.me/ja/)にログインし、マイページからアクセストークンを発行 (送信するトークルームごとに作成される)
 - トークルームにLINE Notifyを招待
 - 発行したトークンをGASコード上のline_tokenにコピペ (1箇所)
-  
+参考:  
+https://qiita.com/frozencatpisces/items/679d66ab1d617b7a40cb  
+https://zenn.dev/miya_akari/articles/e4541d7ac84921
+
 ## 4. 検索キーワードリストの作成
 - 自分のGoogle Accountからマイドライブにアクセス
 - 画面を右クリックし、Google スプレッドシートから新規のスプレッドシートを作成する
