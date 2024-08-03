@@ -18,7 +18,7 @@ function main() {
 
     // 各PubMed IDに分けてメッセージをLINEに送信
     idList.map(id => {
-        const message = [getSummary(id), getGeminiSummary(getFetch(id))];
+        const message = [getSummary(id), getGeminiSummary(getFetch(id))];  // [論文のタイトル等の情報, Geminiで翻訳したアブストラクト]
 
         message.map(part => {
             const options = {
