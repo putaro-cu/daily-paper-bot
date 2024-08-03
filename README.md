@@ -72,7 +72,7 @@
 ![Fig 2](/image/fig2.png)
 
 - API keyなどを自分のものにしたGASコード ([paper_bot.js](/paper_bot.js))をコピペ
-- 実行を押して、LINEに通知が来たら動作確認完了
+- main関数を実行して、LINEに通知が来たら動作確認完了
 
  <img src="/image/fig7.png" width="300">
 
