@@ -1,5 +1,5 @@
 # daily-paper-bot
-Google Apps Scriptを使って、PubMedで文献検索&アブストラクトをGemini 1.5 Flashを使って翻訳したものを、LINEへ通知する。有償のサービスは利用しない。
+[Google Apps Script](https://utelecon.adm.u-tokyo.ac.jp/articles/gas/)を使って、PubMedで文献検索&アブストラクトをGemini 1.5 Flashを使って翻訳したものを、LINEへ通知する。有償のサービスは利用しない。
 
 # 概説
 - Google Spreadsheetに記入したキーワードからランダムで一つ選び、PubMedで過去5年分の論文を検索する (by Entrez API)。
