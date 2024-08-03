@@ -34,20 +34,20 @@
 
 - [NCBI](https://www.ncbi.nlm.nih.gov/)にログイン
 - Account Settings>API Key ManagementのCreate API Keyというボタンを押し、API Keyを生成する
-- 生成したAPI keyをGASコード上のpubmed_keyにコピペ (3箇所)
+- 生成したAPI keyをGASコード上のpubmed_keyにコピペ
 
 ## 2. Geminiの設定
 - [Google AI Studio](https://ai.google.dev/aistudio?hl=ja)にログイン
 - 左上のGet API keyを押して、API keyを作成する
 - 表示されるホップアップは適宜承認
-- 生成したAPI keyをGASコード上のgemini_keyにコピペ (1箇所)
+- 生成したAPI keyをGASコード上のgemini_keyにコピペ
 
 ## 3. LINE Notifyの設定
 
 - LINEで通知を受け取るトークルームを作成
 - [LINE Notify](https://notify-bot.line.me/ja/)にログインし、マイページからアクセストークンを発行 (送信するトークルームごとに作成される)
 - トークルームにLINE Notifyを招待
-- 発行したトークンをGASコード上のline_tokenにコピペ (1箇所)  
+- 発行したトークンをGASコード上のline_tokenにコピペ 
 ### 参考:  
 1. https://qiita.com/frozencatpisces/items/679d66ab1d617b7a40cb  
 2. https://zenn.dev/miya_akari/articles/e4541d7ac84921
