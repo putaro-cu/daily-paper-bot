@@ -16,24 +16,29 @@ function main() {
     const idList = getPubmedID(term);
 
     if (idList < 1) {
-        Logger.log("No results");
-    }
-
-    // 各PubMed IDに分けてメッセージをLINEに送信
-    idList.map(id => {
-        const message = [getSummary(id), getGeminiSummary(getFetch(id))];  // [論文のタイトル等の情報, Geminiで翻訳したアブストラクト]
-
-        message.map(part => {
-            const options = {
-                "method": "post",
-                "payload": { "message": "\n" + part },
-                "headers": { "Authorization": "Bearer " + line_token }
-            };
-
-            UrlFetchApp.fetch(lineNotifyApi, options);
+        const options = {
+                    "method": "post",
+                    "payload": { "message": "検索結果がありません PubMedでの検索方法を確認してください"},
+                    "headers": { "Authorization": "Bearer " + line_token }
+                };
+        UrlFetchApp.fetch(lineNotifyApi, options);
+    } else {
+        // 各PubMed IDに分けてメッセージをLINEに送信
+        idList.map(id => {
+            const message = [getSummary(id), getGeminiSummary(getFetch(id))];  // [論文のタイトル等の情報, Geminiで翻訳したアブストラクト]
+    
+            message.map(part => {
+                const options = {
+                    "method": "post",
+                    "payload": { "message": "\n" + part },
+                    "headers": { "Authorization": "Bearer " + line_token }
+                };
+    
+                UrlFetchApp.fetch(lineNotifyApi, options);
+            });
+    
         });
-
-    });
+    }
 }
 
 function getPubmedID(term) {// pubmedでの検索実行
@@ -51,8 +56,8 @@ function getPubmedID(term) {// pubmedでの検索実行
         retstart: 0,
         retmax: retMax,
         datetype: 'pdat',
-        mindate: [today.getFullYear() - range, today.getMonth(), today.getDay()].join("/"),
-        maxdate: [today.getFullYear(), today.getMonth(), today.getDay()].join("/"),
+        mindate: [today.getFullYear() - range, today.getMonth(), today.getDate()].join("/"),
+        maxdate: [today.getFullYear(), today.getMonth(), today.getDate()].join("/"),
         apikey: pubmed_key,
         sort: 'relevance'
     };
